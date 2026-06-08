@@ -1,0 +1,29 @@
+.CoursesList {
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Course {
+    width: 80%;
+    display: flex;
+    align-items: stretch;
+    border: 1px solid grey;
+    padding: 16px;
+    margin: 12px;
+    border-radius: 8px;
+    flex-direction: column;
+}
+
+.CourseHeader {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.CourseHeader button {
+    width: 30px;
+    height: 30px;
+}
