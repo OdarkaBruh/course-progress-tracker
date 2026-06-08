@@ -16,7 +16,7 @@ const CourseCard = ({
     const progress =
         course.numberOfLessons > 0
             ? course.completedLessons
-            : 0;
+            : 1;
 
     const navigate = useNavigate();
 
@@ -26,7 +26,8 @@ const CourseCard = ({
                 <h3 onClick={() => navigate(`${course.id}`)}>{course.title}</h3>
                 <progress
                     value={progress}
-                    max={course.numberOfLessons}>{progress}%</progress>
+                    max={course.numberOfLessons > 0 ? course.numberOfLessons : 1}>{progress}%
+                </progress>
 
                 <button
                     onClick={() => onDelete?.(course.id)}
