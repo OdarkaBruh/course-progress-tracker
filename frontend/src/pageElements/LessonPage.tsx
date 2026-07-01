@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import LessonCard from "../models/LessonCard";
+import Course__lessonList__card from "../detailed-pages/course-page/course__lesson-list__card.tsx";
 import { getLesson } from "../service/lessonService";
 import type { Lesson } from "../models/Lesson";
 
@@ -21,13 +21,15 @@ const LessonPage = () => {
     }
 
     return (
-        <LessonCard
+        <Course__lessonList__card
             lesson={lesson}
             courseId={Number(courseId)}
             onDelete={() => {}}
             onToggleCompleted={() => {}}
         />
     );
+
+
 };
 
 export default LessonPage;

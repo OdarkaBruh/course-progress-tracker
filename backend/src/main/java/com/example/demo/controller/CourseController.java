@@ -23,8 +23,8 @@ public class CourseController {
 
     @GetMapping("/{id}")
     public Course getCourseById(@PathVariable Long id) {
-        return service.findById(id)
-                .orElseThrow(() -> new RuntimeException("Course not found"));
+        return service.findById(id);
+              //  .orElseThrow(() -> new RuntimeException("Course not found"));
     }
 
     @PostMapping

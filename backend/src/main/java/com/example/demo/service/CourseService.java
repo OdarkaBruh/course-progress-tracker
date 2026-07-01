@@ -25,22 +25,14 @@ public class CourseService {
 
     public List<Course> findAll() {
         List<Course> courses = courseRepository.findAll();
-        courses.forEach(course -> {
-
-        course.setNumberOfLessons(
-                lessonRepository.countByCourseId(
-                        course.getId()));
-
-        course.setCompletedLessons(
-                lessonRepository
-                        .countByCourseIdAndIsCompletedTrue(
-                                course.getId()));
-        });
+        courses.forEach(course -> {course = updateCourseLessons(course);});
         return courses;
     }
 
-    public Optional<Course> findById(Long id) {
-        return courseRepository.findById(id);
+    public Course findById(Long id) {
+        Course course = courseRepository.findById(id).orElse(null);
+        if (course != null) course = updateCourseLessons(course);
+        return course;
     }
 
     public Course create(Course course) {
@@ -52,8 +44,7 @@ public class CourseService {
                 .map(course -> {
                     course.setTitle(updatedCourse.getTitle());
                     course.setDescription(updatedCourse.getDescription());
-                    course.setCompletedLessons(updatedCourse.getCompletedLessons());
-                    course.setNumberOfLessons(updatedCourse.getNumberOfLessons());
+                    course = updateCourseLessons(course);
                     return courseRepository.save(course);
                 })
                 .orElseThrow(() -> new RuntimeException("Course not found"));
@@ -65,5 +56,19 @@ public class CourseService {
     		lessonRepository.delete(l);
     	}
         courseRepository.deleteById(id);
+    }
+    
+    private Course updateCourseLessons(Course course) {
+    	course.setNumberOfLessons(getNumberOfLessons(course.getId()));
+    	course.setCompletedLessons(getCompletedLessons(course.getId()));
+    	return course;
+    }
+    
+    private int getNumberOfLessons(long courseId) {
+    	return (int) lessonRepository.countByCourseId(courseId);
+    }
+    
+    private int getCompletedLessons(long courseId) {
+    	return (int)lessonRepository.countByCourseIdAndIsCompletedTrue(courseId);
     }
 }

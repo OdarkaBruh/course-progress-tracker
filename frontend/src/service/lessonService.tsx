@@ -60,3 +60,15 @@ export const deleteLesson = async (
 ): Promise<void> => {
     await axios.delete(`${API_URL}/${courseId}/lessons/${id}`);
 };
+
+export const toggleIsFinished = async (
+    courseId: number,
+    lesson: Lesson
+): Promise<Lesson> => {
+    lesson.isCompleted = !lesson.isCompleted;
+    const response = await axios.put<Lesson>(
+        `${API_URL}/${courseId}/lessons/${lesson.id}`,
+        lesson
+    );
+    return response.data;
+};

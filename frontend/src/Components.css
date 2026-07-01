@@ -1,0 +1,19 @@
+
+.course-lessons-list {
+    margin-top: 10px;
+    margin-left: 15px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    width: 45%;
+}
+
+
+.course__header span {
+    background-color: #5DBB63;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: normal;
+    margin-left: 10px;
+}

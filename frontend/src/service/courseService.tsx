@@ -39,3 +39,15 @@ export const deleteCourse = async (
 ): Promise<void> => {
     await axios.delete(`${API_URL}/${id}`);
 };
+
+export const updateCourse = async (
+    id: number,
+    course: CreateCourseRequest
+): Promise<Course> => {
+    const response = await axios.put(
+        `${API_URL}/${id}`,
+        course
+    );
+
+    return response.data;
+};

@@ -23,10 +23,10 @@ public class Course {
 
     
     @Transient
-    private long numberOfLessons;
+    public long numberOfLessons;
 
     @Transient
-    private long completedLessons;
+    public long completedLessons;
     
     public Course() {
         this.createdAt = LocalDateTime.now();
